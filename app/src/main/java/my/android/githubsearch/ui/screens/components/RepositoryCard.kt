@@ -175,31 +175,28 @@ private fun RepositoryMetaData(
     }
 }
 
-val repositories = listOf (
-    Repository(
-        id = 123456,
-        name = "LearnKotlin",
-        full_name = "ayush/learn-kotlin",
-        description = "This is the best repository to learn Kotlin.",
-        htmlUrl = "https://github.com/user/awesome-repo",
-        stargazersCount = 1500,
-        language = "Kotlin",
-        forksCount = 250,
-        updated_at = "24/11/24",
-        isOfflineCache = false,
-        owner = RepositoryOwner(
-            avatar_url = "https://avatars.githubusercontent.com/u/143383811?v=4",
-            html_url = "https://github.com/ayush19sinha",
-            login = "Ayush"
-        )
-    ),
-
+val sampleRepository = Repository(
+    id = 123456,
+    name = "LearnKotlin",
+    full_name = "ayush/learn-kotlin",
+    description = "This is the best repository to learn Kotlin.",
+    htmlUrl = "https://github.com/user/awesome-repo",
+    stargazersCount = 1500,
+    language = "Kotlin",
+    forksCount = 250,
+    updated_at = "24/11/24",
+    isOfflineCache = false,
+    owner = RepositoryOwner(
+        avatar_url = "https://avatars.githubusercontent.com/u/143383811?v=4",
+        html_url = "https://github.com/ayush19sinha",
+        login = "Ayush"
+    )
 )
 
 @Preview
 @Composable
 private fun RepositoryCardPreview() {
-    RepositoryCard(repository = repositories[0]) {
+    RepositoryCard(repository = sampleRepository) {
 
     }
 }
