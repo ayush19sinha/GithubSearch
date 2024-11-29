@@ -3,45 +3,38 @@ package my.android.githubsearch
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import my.android.githubsearch.data.local.AppDatabase
+import my.android.githubsearch.data.network.createGitHubApiService
+import my.android.githubsearch.data.repository.GitHubRepository
+import my.android.githubsearch.navigation.GitHubSearchNavigation
 import my.android.githubsearch.ui.theme.GithubSearchTheme
+import my.android.githubsearch.ui.viewmodel.HomeViewModel
+import my.android.githubsearch.ui.viewmodel.RepositoryDetailViewModel
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var repositoryDetailViewModel: RepositoryDetailViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        val context = applicationContext
+        val apiService = createGitHubApiService(context)
+        val database = AppDatabase.getDatabase(context)
+        val repositoryDao = database.repositoryDao()
+        val repository = GitHubRepository(context, apiService, repositoryDao)
+
+        homeViewModel = HomeViewModel(repository)
+        repositoryDetailViewModel = RepositoryDetailViewModel(repository)
+
         setContent {
             GithubSearchTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                GitHubSearchNavigation(
+                    homeViewModel = homeViewModel,
+                    repositoryDetailViewModel = repositoryDetailViewModel
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GithubSearchTheme {
-        Greeting("Android")
     }
 }
