@@ -68,6 +68,7 @@ import my.android.githubsearch.data.model.Contributor
 import my.android.githubsearch.data.model.Repository
 import my.android.githubsearch.ui.theme.StarColor
 import my.android.githubsearch.ui.viewmodel.RepositoryDetailViewModel
+import my.android.githubsearch.utils.formatCount
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,7 +76,7 @@ fun RepositoryDetailScreen(
     repository: Repository,
     repositoryDetailViewModel: RepositoryDetailViewModel,
     onBackClick: () -> Unit,
-    onViewOnGithubClick: () -> Unit
+    onViewOnGithubClick: (String) -> Unit
 ) {
     val contributorsState by repositoryDetailViewModel.contributors.collectAsState()
     val isLoading by repositoryDetailViewModel.isLoading.collectAsState()
@@ -150,7 +151,7 @@ fun RepositoryDetailScreen(
                     contributors = contributorsState,
                     isLoading = isLoading
                 )
-                RepositoryActions(onViewOnGithubClick)
+                RepositoryActions(repository = repository, onViewOnGithubClick = onViewOnGithubClick)
             }
         }
     }
@@ -303,23 +304,23 @@ private fun RepositoryStats(repository: Repository) {
         ) {
             StatItem(
                 icon = Icons.Filled.Star,
-                value = repository.stargazers_count,
+                value = formatCount(repository.stargazers_count),
                 label = "Stars",
                 tint = StarColor
             )
             StatItem(
                 icon = painterResource(id = R.drawable.ic_fork),
-                value = repository.forks_count,
+                value = formatCount(repository.forks_count),
                 label = "Forks"
             )
             StatItem(
                 icon = painterResource(id = R.drawable.ic_watcher),
-                value = repository.watchers_count,
+                value = formatCount(repository.watchers_count),
                 label = "Watchers"
             )
             StatItem(
                 icon = painterResource(id = R.drawable.ic_issue),
-                value = repository.open_issues_count,
+                value = formatCount(repository.open_issues_count),
                 label = "Issues",
                 tint = MaterialTheme.colorScheme.error
             )
@@ -330,7 +331,7 @@ private fun RepositoryStats(repository: Repository) {
 @Composable
 private fun StatItem(
     icon: Any,
-    value: Int,
+    value: String,
     tint: Color = MaterialTheme.colorScheme.primary,
     label: String
 ) {
@@ -358,7 +359,7 @@ private fun StatItem(
         }
 
         Text(
-            text = value.toString(),
+            text = value,
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold
         )
@@ -451,14 +452,14 @@ private fun ContributorItem(contributor: Contributor) {
 }
 
 @Composable
-private fun RepositoryActions(onViewOnGithubClick: () -> Unit) {
+private fun RepositoryActions(repository: Repository, onViewOnGithubClick: (String) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
     ) {
         Button(
-            onClick = onViewOnGithubClick,
+            onClick = { onViewOnGithubClick(repository.html_url) },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
