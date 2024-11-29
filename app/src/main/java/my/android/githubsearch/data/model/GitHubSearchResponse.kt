@@ -16,12 +16,14 @@ data class Repository(
     val name: String,
     val full_name: String,
     val description: String?,
-    val htmlUrl: String,
+    val html_url: String,
     val owner: RepositoryOwner,
-    val stargazersCount: Int,
+    val stargazers_count: Int,
     val language: String?,
-    val forksCount: Int,
+    val forks_count: Int,
     val updated_at: String,
+    val open_issues_count: Int,
+    val watchers_count: Int,
     val isOfflineCache: Boolean = false
 )
 

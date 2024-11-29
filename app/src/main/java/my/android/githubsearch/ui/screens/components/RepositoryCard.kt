@@ -112,8 +112,8 @@ fun RepositoryCard(
 
             RepositoryMetaData(
                 language = repository.language ?: "Unknown",
-                starCount = repository.stargazersCount,
-                forkCount = repository.forksCount,
+                starCount = repository.stargazers_count,
+                forkCount = repository.forks_count,
                 context = context
             )
         }
@@ -179,13 +179,15 @@ val sampleRepository = Repository(
     id = 123456,
     name = "LearnKotlin",
     full_name = "ayush/learn-kotlin",
-    description = "This is the best repository to learn Kotlin.",
-    htmlUrl = "https://github.com/user/awesome-repo",
-    stargazersCount = 1500,
+    description = "This is the best repository to learn Kotlin. You can learn everything about kotlin from this repository.",
+    html_url = "https://github.com/user/awesome-repo",
+    stargazers_count = 1500,
     language = "Kotlin",
-    forksCount = 250,
+    forks_count = 250,
     updated_at = "24/11/24",
+    watchers_count = 1245,
     isOfflineCache = false,
+    open_issues_count = 123,
     owner = RepositoryOwner(
         avatar_url = "https://avatars.githubusercontent.com/u/143383811?v=4",
         html_url = "https://github.com/ayush19sinha",
