@@ -70,6 +70,7 @@ dependencies {
 
     // coil
     implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     // jetpack Navigation
     implementation(libs.androidx.navigation.compose)

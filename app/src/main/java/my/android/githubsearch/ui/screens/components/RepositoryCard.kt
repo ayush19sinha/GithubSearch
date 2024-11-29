@@ -22,7 +22,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,7 +31,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
@@ -40,7 +38,6 @@ import coil3.request.crossfade
 import getLanguageColor
 import my.android.githubsearch.R
 import my.android.githubsearch.data.model.Repository
-import my.android.githubsearch.data.model.RepositoryOwner
 import my.android.githubsearch.ui.theme.StarColor
 import my.android.githubsearch.utils.formatCount
 
@@ -72,12 +69,10 @@ fun RepositoryCard(
                         .size(48.dp)
                         .clip(CircleShape)
                         .border(1.dp, MaterialTheme.colorScheme.outline, CircleShape),
-                    model = remember(context, repository.owner.avatar_url) {
-                        ImageRequest.Builder(context)
-                            .data(repository.owner.avatar_url)
-                            .crossfade(true)
-                            .build()
-                    },
+                    model = ImageRequest.Builder(context)
+                        .data(repository.owner.avatar_url)
+                        .crossfade(true)
+                        .build(),
                     placeholder = painterResource(R.drawable.ic_github),
                     contentDescription = "Avatar",
                     contentScale = ContentScale.Crop
@@ -172,33 +167,5 @@ private fun RepositoryMetaData(
                 style = MaterialTheme.typography.bodySmall
             )
         }
-    }
-}
-
-val sampleRepository = Repository(
-    id = 123456,
-    name = "LearnKotlin",
-    full_name = "ayush/learn-kotlin",
-    description = "This is the best repository to learn Kotlin. You can learn everything about kotlin from this repository.",
-    html_url = "https://github.com/user/awesome-repo",
-    stargazers_count = 1500,
-    language = "Kotlin",
-    forks_count = 250,
-    updated_at = "24/11/24",
-    watchers_count = 1245,
-    isOfflineCache = false,
-    open_issues_count = 123,
-    owner = RepositoryOwner(
-        avatar_url = "https://avatars.githubusercontent.com/u/143383811?v=4",
-        html_url = "https://github.com/ayush19sinha",
-        login = "Ayush"
-    )
-)
-
-@Preview
-@Composable
-private fun RepositoryCardPreview() {
-    RepositoryCard(repository = sampleRepository) {
-
     }
 }
