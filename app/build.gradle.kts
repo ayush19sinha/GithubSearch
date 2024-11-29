@@ -59,6 +59,7 @@ dependencies {
     // retrofit, gson
     implementation(libs.retrofit)
     implementation (libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
 
     // coil
