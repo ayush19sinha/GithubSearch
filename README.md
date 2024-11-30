@@ -61,8 +61,8 @@ https://github.com/user-attachments/assets/4cf4d4e7-64e4-40ec-9c77-3dba4000b659
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/github-search.git
-   cd github-search
+   git clone https://github.com/ayush19sinha/GithubSearch.git
+   cd GithubSearch
    ```
   
 2. Build and run the app:
@@ -86,6 +86,16 @@ https://github.com/user-attachments/assets/4cf4d4e7-64e4-40ec-9c77-3dba4000b659
 
 2. **Add Dependency Injection (DI)**:
    - Implement a DI framework such as **Hilt** or **Koin** for better dependency management.
+
+3. **Add "Favorites" Feature**:  
+    - Allow users to save their favorite repositories for quick access later.
+
+4. **Add Sorting and Filtering Options**:  
+    - Allow users to sort repositories by stars, forks, or update date and filter results based on programming languages or topics.
+
+5. **Add Unit and Instrumentation Tests**:  
+   - Write unit tests for the ViewModel and repository layers to ensure code reliability.  
+   - Add instrumentation tests for navigation and UI validation using frameworks like **Espresso** or **Jetpack Compose Testing**.  
 
 ---
 
