@@ -294,8 +294,9 @@ private fun RepositoryStats(repository: Repository) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-    ) {
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -311,7 +312,8 @@ private fun RepositoryStats(repository: Repository) {
             StatItem(
                 icon = painterResource(id = R.drawable.ic_fork),
                 value = formatCount(repository.forks_count),
-                label = "Forks"
+                label = "Forks",
+                tint = MaterialTheme.colorScheme.secondary
             )
             StatItem(
                 icon = painterResource(id = R.drawable.ic_watcher),
@@ -462,8 +464,8 @@ private fun RepositoryActions(repository: Repository, onViewOnGithubClick: (Stri
             onClick = { onViewOnGithubClick(repository.html_url) },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = MaterialTheme.colorScheme.onSecondary
             )
         ) {
             Icon(

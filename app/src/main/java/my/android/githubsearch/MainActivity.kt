@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
         repositoryDetailViewModel = RepositoryDetailViewModel(repository)
 
         setContent {
-            GithubSearchTheme {
+            GithubSearchTheme(dynamicColor = false) {
                 GitHubSearchNavigation(
                     homeViewModel = homeViewModel,
                     repositoryDetailViewModel = repositoryDetailViewModel

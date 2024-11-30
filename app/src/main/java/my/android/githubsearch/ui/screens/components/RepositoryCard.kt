@@ -53,6 +53,7 @@ fun RepositoryCard(
         onClick = onClick,
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
         shape = RoundedCornerShape(16.dp),
     ) {
         Column(
