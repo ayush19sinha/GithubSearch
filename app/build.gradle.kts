@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
     alias(libs.plugins.compose.compiler)
 }
 
@@ -51,6 +52,10 @@ android {
     }
 }
 
+ksp {
+    arg("dagger.hilt.android.internal.disableAndroidSuperclassValidation", "true")
+}
+
 dependencies {
 
     // room
@@ -59,8 +64,9 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     annotationProcessor (libs.androidx.room.compiler)
 
-
-
+    // dagger hilt
+    implementation(libs.hilt.android)
+    ksp (libs.dagger.compiler)
 
     // retrofit, gson
     implementation(libs.retrofit)

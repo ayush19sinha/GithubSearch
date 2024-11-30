@@ -158,7 +158,7 @@ fun RepositoryDetailScreen(
 }
 
 @Composable
-private fun LoadingContent(modifier: Modifier = Modifier) {
+fun LoadingContent(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center

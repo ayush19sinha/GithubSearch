@@ -2,6 +2,7 @@ package my.android.githubsearch.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -9,8 +10,10 @@ import kotlinx.coroutines.launch
 import my.android.githubsearch.data.model.Contributor
 import my.android.githubsearch.data.model.Repository
 import my.android.githubsearch.data.repository.GitHubRepository
+import javax.inject.Inject
 
-class RepositoryDetailViewModel(private val gitHubRepository: GitHubRepository) : ViewModel() {
+@HiltViewModel
+class RepositoryDetailViewModel @Inject constructor(private val gitHubRepository: GitHubRepository) : ViewModel() {
 
     private val _repository = MutableStateFlow<Repository?>(null)
     val repository: StateFlow<Repository?> get() = _repository.asStateFlow()
