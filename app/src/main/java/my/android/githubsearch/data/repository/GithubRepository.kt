@@ -17,16 +17,26 @@ class GitHubRepository @Inject constructor(
 ) {
     fun searchRepositories(query: String, page: Int): Flow<List<Repository>> = flow {
         try {
-            val searchResult = apiService.searchRepositories(query, page)
-
             if (page == 1) {
                 repositoryDao.clearCachedRepositories()
-                val cachedRepos = searchResult.items.take(15).map {
-                    it.copy(isOfflineCache = true)
+                val cachedRepos = mutableListOf<Repository>()
+                var currentPage = 1
+                var totalCached = 0
+
+                while (totalCached < 15) {
+                    val result = apiService.searchRepositories(query, currentPage)
+                    val itemsToCache = result.items.take(15 - totalCached)
+
+                    if (itemsToCache.isEmpty()) break
+
+                    cachedRepos.addAll(itemsToCache.map { it.copy(isOfflineCache = true) })
+                    totalCached += itemsToCache.size
+                    currentPage++
                 }
                 repositoryDao.insertRepositories(cachedRepos)
             }
 
+            val searchResult = apiService.searchRepositories(query, page)
             emit(searchResult.items)
         } catch (e: Exception) {
             emitAll(
