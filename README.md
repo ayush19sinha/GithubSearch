@@ -29,9 +29,7 @@
 ## 📹 App Demo
 
 
-
-https://github.com/user-attachments/assets/4cf4d4e7-64e4-40ec-9c77-3dba4000b659
-
+https://github.com/user-attachments/assets/964e8553-2343-4a4e-ada4-8fba16cfde5e
 
 
 ---
@@ -62,7 +60,6 @@ https://github.com/user-attachments/assets/4cf4d4e7-64e4-40ec-9c77-3dba4000b659
 1. Clone the repository:
    ```bash
    git clone https://github.com/ayush19sinha/GithubSearch.git
-   cd GithubSearch
    ```
   
 2. Build and run the app:
@@ -81,10 +78,10 @@ https://github.com/user-attachments/assets/4cf4d4e7-64e4-40ec-9c77-3dba4000b659
 
 ## 📝 To-Do
 
-1. **Improve Color Scheme and Theme**:
+1. **Improve Color Scheme and Theme**:  (Done)
    - Enhance the app's visual appeal by refining the color palette and theming for a more cohesive user experience.
 
-2. **Add Dependency Injection (DI)**:
+2. **Add Dependency Injection (DI)**:   (Done)
    - Implement a DI framework such as **Hilt** or **Koin** for better dependency management.
 
 3. **Add "Favorites" Feature**:  
